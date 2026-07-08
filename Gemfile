@@ -23,4 +23,5 @@ group :development do
   gem "pry-doc"
   gem 'ostruct'
   gem 'faker'
+  gem 'graphiql-rails'
 end
