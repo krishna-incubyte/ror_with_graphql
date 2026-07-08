@@ -18,4 +18,8 @@ end
 group :development do
   gem 'pry'
   gem 'pry-rails'
+  gem 'annotaterb'
+  gem "pry-nav"
+  gem "pry-doc"
+  gem 'ostruct'
 end

@@ -72,6 +72,9 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
+    annotaterb (4.23.0)
+      activerecord (>= 6.0.0)
+      activesupport (>= 6.0.0)
     ast (2.4.3)
     base64 (0.3.0)
     benchmark (0.5.0)
@@ -151,6 +154,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-musl)
       racc (~> 1.4)
+    ostruct (0.6.3)
     parallel (2.1.0)
     parser (3.3.11.1)
       ast (~> 2.4.1)
@@ -165,10 +169,14 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.9.0)
-    pry (0.16.0)
+    pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-      reline (>= 0.6.0)
+    pry-doc (1.7.0)
+      pry (~> 0.11)
+      yard (~> 0.9.21)
+    pry-nav (1.0.0)
+      pry (>= 0.9.10, < 0.15)
     pry-rails (0.3.11)
       pry (>= 0.13.0)
     puma (8.0.2)
@@ -274,6 +282,7 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    yard (0.9.44)
     zeitwerk (2.8.2)
 
 PLATFORMS
@@ -288,12 +297,16 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  annotaterb
   bootsnap
   brakeman
   debug
   graphql (~> 2.6)
+  ostruct
   pg (~> 1.1)
   pry
+  pry-doc
+  pry-nav
   pry-rails
   puma (>= 5.0)
   rails (~> 8.0.3)
