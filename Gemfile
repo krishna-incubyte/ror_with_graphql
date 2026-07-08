@@ -22,4 +22,5 @@ group :development do
   gem "pry-nav"
   gem "pry-doc"
   gem 'ostruct'
+  gem 'faker'
 end
