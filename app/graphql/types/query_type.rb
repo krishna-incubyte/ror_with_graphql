@@ -17,6 +17,10 @@ module Types
       User.includes(:posts).all
     end
 
+    field :users_with_posts, resolver: Resolvers::PostedUsers
+
+    field :filter_user, resolver: Resolvers::FilterUsers
+
     field :test_field, String, null: false,
       description: "An example field added by the generator"
 
