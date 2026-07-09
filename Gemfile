@@ -13,15 +13,23 @@ group :development, :test do
   gem 'debug', platforms: %i[ mri windows ], require: 'debug/prelude'
   gem 'brakeman', require: false
   gem 'rubocop-rails-omakase', require: false
-end
-
-group :development do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'shoulda-matchers'
+  gem 'rspec-graphql_matchers'
   gem 'pry'
   gem 'pry-rails'
-  gem 'annotaterb'
   gem "pry-nav"
   gem "pry-doc"
   gem 'ostruct'
+  gem 'simplecov'
+  gem 'strong_migrations'
+end
+
+group :development do
+  gem 'annotaterb'
   gem 'faker'
   gem 'graphiql-rails'
 end

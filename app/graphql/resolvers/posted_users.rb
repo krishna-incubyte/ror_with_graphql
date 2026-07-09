@@ -1,5 +1,7 @@
 module Resolvers
   class PostedUsers < BaseResolver
+    description 'Find users who have posts'
+
     type [Types::UserType], null: false
 
     def resolve

@@ -12,24 +12,22 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class User < ApplicationRecord
-  has_many :posts, dependent: :destroy
+FactoryBot.define do
+  factory :user do
+    sequence :first_name do |n|
+      "Bruce #{n}"
+    end
+    last_name { 'Wayne' }
+    gender { 'male' }
+    role { 'admin' }
+    sequence :email do |n|
+      "test#{n}@gmail.com"
+    end
+  end
 
-  enum :gender, {
-    male: 0,
-    female: 1,
-    non_binary: 2,
-    agender: 3,
-    gender_fluid: 4,
-    gender_queer: 5,
-    bigender: 6,
-    polygender: 7,
-    other: 8
-  }
-
-  enum :role, {
-    admin: 0,
-    client: 1,
-    product_owner: 2
-  }
+  trait :with_post do
+    after(:build) do |user|
+      user.posts << build(:post)
+    end
+  end
 end

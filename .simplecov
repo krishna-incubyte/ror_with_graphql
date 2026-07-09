@@ -1,0 +1,1 @@
+SimpleCov.add_filter %r{^/ruby/}
