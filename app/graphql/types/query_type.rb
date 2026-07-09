@@ -7,15 +7,7 @@ module Types
       argument :id, ID, required: true
     end
 
-    def user(id:)
-      User.find_by(id: id)
-    end
-
     field :all_users, [Types::UserType], null: false
-
-    def all_users
-      User.includes(:posts).all
-    end
 
     field :users_with_posts, resolver: Resolvers::PostedUsers
 
@@ -23,6 +15,16 @@ module Types
 
     field :test_field, String, null: false,
       description: "An example field added by the generator"
+
+
+    def user(id:)
+      User.find_by(id: id)
+    end
+
+    def all_users
+      User.includes(:posts).all
+    end
+
 
     def test_field
       "Hello World!"
