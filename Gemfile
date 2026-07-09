@@ -19,15 +19,15 @@ group :development, :test do
   gem 'webmock'
   gem 'shoulda-matchers'
   gem 'rspec-graphql_matchers'
-end
-
-group :development do
   gem 'pry'
   gem 'pry-rails'
-  gem 'annotaterb'
   gem "pry-nav"
   gem "pry-doc"
   gem 'ostruct'
+end
+
+group :development do
+  gem 'annotaterb'
   gem 'faker'
   gem 'graphiql-rails'
 end
