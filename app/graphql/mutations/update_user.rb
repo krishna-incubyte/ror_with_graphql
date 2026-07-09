@@ -10,11 +10,13 @@ module Mutations
     type Types::UserType
 
     def resolve(id: ,first_name:, last_name:, dob:, role:, gender:)
+      user = User.find_by(id: id)
+      return GraphQL::ExecutionError.new("User not found") if user.nil?
+
       begin
-        user = User.find_by(id: id)
         user.update!(first_name: first_name, last_name: last_name, dob: dob, role: role, gender: gender)
         user
-      rescue => e
+      rescue ActiveRecord::RecordInvalid => e
         GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
       end
     end

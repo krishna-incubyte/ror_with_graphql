@@ -7,10 +7,12 @@ module Mutations
 
     def resolve(id: )
       user = User.find_by(id: id)
+      return { success: nil, errors: ["User not found"] } if user.nil?
+
       if user.destroy
         { success: "User #{user.first_name} sucessfully destroyed", errors: [] }
       else
-        { errors: "User cannot be deleted #{user.errors.full_messages}"}
+        { success: nil, errors: user.errors.full_messages }
       end
     end
   end
