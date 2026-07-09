@@ -83,6 +83,7 @@ VCR.configure do |c|
     match_requests_on: [:uri, :body, :method]
   }
   c.configure_rspec_metadata!
+  c.filter_sensitive_data('sensitive-data') { Rails.application.credentials.exchange_rate.api_key }
 end
 
 Shoulda::Matchers.configure do |config|

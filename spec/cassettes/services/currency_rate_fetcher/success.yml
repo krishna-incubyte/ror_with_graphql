@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://v6.exchangerate-api.com/v6/sensitive-data/pair/INR/USD
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - v6.exchangerate-api.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jul 2026 06:52:52 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - "*"
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - cloudflare
+      X-Content-Type-Options:
+      - NOSNIFF
+      X-Frame-Options:
+      - SAMEORIGIN
+      Vary:
+      - accept-encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Ray:
+      - a18568892feb20c5-BLR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":"success","documentation":"https://www.exchangerate-api.com/docs","terms_of_use":"https://www.exchangerate-api.com/terms","time_last_update_unix":1783555202,"time_last_update_utc":"Thu,
+        09 Jul 2026 00:00:02 +0000","time_next_update_unix":1783641602,"time_next_update_utc":"Fri,
+        10 Jul 2026 00:00:02 +0000","base_code":"INR","target_code":"USD","conversion_rate":0.01046}'
+  recorded_at: Thu, 09 Jul 2026 06:52:52 GMT
+recorded_with: VCR 6.4.0
