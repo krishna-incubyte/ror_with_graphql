@@ -1,16 +1,16 @@
 module Resolvers
   class FilterUsers < BaseResolver
-    argument :limit, Integer, required: false
+    argument :first, Integer, required: false
     argument :search_by_name, String, required: false
     argument :role, String, required: false
 
     type [Types::UserType], null: false
 
-    def resolve(limit: nil, search_by_name: nil, role: role)
+    def resolve(first: nil, search_by_name: nil, role: role)
       users = User.all
       users = users.where("first_name ILIKE :q OR last_name ILIKE :q", q: "%#{search_by_name}%") if search_by_name.present?
       users = users.where(role: role) if role
-      users = users.limit(limit) if limit
+      users = users.limit(first) if first
       users
     end
   end
