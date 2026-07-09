@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  dob        :date
+#  email      :string
 #  first_name :string           not null
 #  gender     :integer          not null
 #  last_name  :string
@@ -17,7 +18,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   context "schema" do
-    [:first_name, :last_name].each do |field|
+    [:first_name, :last_name, :email].each do |field|
       it { is_expected.to have_db_column(field).of_type :string }
     end
     [:role, :gender].each do |field|

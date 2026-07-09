@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  dob        :date
+#  email      :string
 #  first_name :string           not null
 #  gender     :integer          not null
 #  last_name  :string
@@ -19,6 +20,9 @@ FactoryBot.define do
     last_name { 'Wayne' }
     gender { 'male' }
     role { 'admin' }
+    sequence :email do |n|
+      "test#{n}@gmail.com"
+    end
   end
 
   trait :with_post do

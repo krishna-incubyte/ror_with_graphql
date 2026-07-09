@@ -25,6 +25,7 @@ group :development, :test do
   gem "pry-doc"
   gem 'ostruct'
   gem 'simplecov'
+  gem 'strong_migrations'
 end
 
 group :development do

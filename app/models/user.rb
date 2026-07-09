@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  dob        :date
+#  email      :string
 #  first_name :string           not null
 #  gender     :integer          not null
 #  last_name  :string
