@@ -6,7 +6,7 @@ module Resolvers
 
     type [Types::UserType], null: false
 
-    def resolve(first: nil, search_by_name: nil, role: role)
+    def resolve(first: nil, search_by_name: nil, role: nil)
       users = User.all
       users = users.where("first_name ILIKE :q OR last_name ILIKE :q", q: "%#{search_by_name}%") if search_by_name.present?
       users = users.where(role: role) if role
