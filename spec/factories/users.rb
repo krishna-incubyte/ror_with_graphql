@@ -20,4 +20,10 @@ FactoryBot.define do
     gender { 'male' }
     role { 'admin' }
   end
+
+  trait :with_post do
+    after(:build) do |user|
+      user.posts << build(:post)
+    end
+  end
 end

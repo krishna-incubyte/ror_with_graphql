@@ -18,6 +18,7 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'shoulda-matchers'
+  gem 'rspec-graphql_matchers'
 end
 
 group :development do
