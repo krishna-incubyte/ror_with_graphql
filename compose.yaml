@@ -9,16 +9,21 @@
 # https://github.com/docker/awesome-compose
 services:
   db:
-    image: postgres:18
+    image: postgres:17
     environment:
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - 5430:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
   web:
     build: .
     ports:
       - 3001:3000
     environment:
-      DATABASE_URL: postgresql://postgres:password@db:5432/ror_with_graphql_development
+      DATABASE_URL: ${DATABASE_URL}
     depends_on:
       - db
+
+volumes:
+  db_data:
