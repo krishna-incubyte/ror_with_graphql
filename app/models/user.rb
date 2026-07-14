@@ -13,6 +13,8 @@
 #  updated_at :datetime         not null
 #
 class User < ApplicationRecord
+  include Searchable
+
   has_many :posts, dependent: :destroy
 
   enum :gender, {
@@ -32,4 +34,25 @@ class User < ApplicationRecord
     client: 1,
     product_owner: 2
   }
+
+
+  mappings dynamic: false do
+    indexes :name, type: "text", analyzer: "english" do
+      indexes :keyword, type: "keyword"
+    end
+    indexes :dob,    type: "date", format: "yyyy-MM-dd"
+    indexes :gender, type: "keyword"
+    indexes :role,   type: "keyword"
+    indexes :email,  type: "keyword"
+  end
+
+  def as_indexed_json(options = {})
+    {
+      name:   "#{first_name} #{last_name}",
+      dob:    dob,
+      gender: gender,
+      role:   role,
+      email:  email&.downcase
+    }
+  end
 end

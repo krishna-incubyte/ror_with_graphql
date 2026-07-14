@@ -19,5 +19,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Post < ApplicationRecord
+  include Searchable
+
   belongs_to :user
 end
