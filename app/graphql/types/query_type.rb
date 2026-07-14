@@ -13,6 +13,8 @@ module Types
 
     field :filter_user, resolver: Resolvers::FilterUsers
 
+    field :aggregations, resolver: Resolvers::AggregateUsers
+
     field :test_field, String, null: false,
       description: "An example field added by the generator"
 
