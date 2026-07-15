@@ -21,5 +21,5 @@
 class Post < ApplicationRecord
   include Searchable
 
-  belongs_to :user
+  belongs_to :user, touch: true
 end

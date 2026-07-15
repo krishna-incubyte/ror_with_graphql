@@ -35,7 +35,6 @@ class User < ApplicationRecord
     product_owner: 2
   }
 
-
   mappings dynamic: false do
     indexes :name, type: "text", analyzer: "english" do
       indexes :keyword, type: "keyword"
@@ -54,5 +53,12 @@ class User < ApplicationRecord
       role:   role,
       email:  email&.downcase
     }
+  end
+
+
+  def posts_count
+    Rails.cache.fetch("#{cache_key_with_version}/post_counts", expires_in: 1.day) do
+      posts.count
+    end
   end
 end
