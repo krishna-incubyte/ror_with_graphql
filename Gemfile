@@ -11,6 +11,7 @@ gem 'graphql', "~> 2.6"
 gem 'rack-cors'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'redis'
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri windows ], require: 'debug/prelude'

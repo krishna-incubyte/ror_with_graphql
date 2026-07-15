@@ -8,6 +8,7 @@ module Types
     field :dob, GraphQL::Types::ISO8601Date
     field :gender, String, null: false
     field :role, String, null: false
+    field :posts_count, Integer, null: false
     field :posts, [Types::PostType]
   end
 end
