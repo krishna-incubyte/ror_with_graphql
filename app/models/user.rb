@@ -57,7 +57,7 @@ class User < ApplicationRecord
 
 
   def posts_count
-    Rails.cache.fetch("#{cache_key_with_version}/post_counts") do
+    Rails.cache.fetch("#{cache_key_with_version}/post_counts", expires_in: 1.day) do
       posts.count
     end
   end
