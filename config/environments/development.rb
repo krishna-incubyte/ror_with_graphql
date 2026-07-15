@@ -26,6 +26,14 @@ Rails.application.configure do
   # Change to :null_store to avoid any caching.
   config.cache_store = :redis_cache_store, { url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } }
 
+  config.session_store :redis_session_store,
+    key: ENV.fetch("SESSION_KEY") { nil },
+    redis: {
+      expire_after: 60.minutes,
+      key_prefix: 'ror_with_graphql:session:',
+      url: ENV.fetch("SESSION_REDIS_URL") { "redis://localhost:6379/2" }
+    }
+
   # config.cache_store = :memory_store
 
   # Store uploaded files on the local file system (see config/storage.yml for options).

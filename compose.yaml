@@ -60,6 +60,7 @@ services:
       ELASTIC_USERNAME: ${ELASTIC_USERNAME}
       ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
       REDIS_URL: ${REDIS_URL}
+      SESSION_REDIS_URL: ${SESSION_REDIS_URL}
     depends_on:
       db:
         condition: service_started
