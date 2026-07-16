@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Types::MutationType, type: :grapghl do
+RSpec.describe Types::MutationType, type: :grapghl, skip_es_callbacks: true do
   describe '#create_user' do
     it 'creates a user with the given attributes' do
       user = run_graphql_field('Mutation.createUser', nil, arguments: {

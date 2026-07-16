@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Types::QueryType, type: :grapghl do
-  describe '#user' do
+  describe '#user', skip_es_callbacks: true do
     it 'returns the user matching the given id' do
       user = create(:user)
 
@@ -17,7 +17,7 @@ RSpec.describe Types::QueryType, type: :grapghl do
     end
   end
 
-  describe '#all_users' do
+  describe '#all_users', skip_es_callbacks: true do
     it 'returns all users' do
       users = create_list(:user, 3)
 
@@ -27,7 +27,7 @@ RSpec.describe Types::QueryType, type: :grapghl do
     end
   end
 
-  describe '#test_field' do
+  describe '#test_field', skip_es_callbacks: true do
     it 'returns the static greeting' do
       result = run_graphql_field('Query.testField', nil)
 
@@ -35,7 +35,7 @@ RSpec.describe Types::QueryType, type: :grapghl do
     end
   end
 
-  describe '#users_with_posts' do
+  describe '#users_with_posts', skip_es_callbacks: true do
     it 'returns only users who have posts' do
       user_with_post = create(:user, :with_post)
       user_without_post = create(:user)
@@ -82,6 +82,33 @@ RSpec.describe Types::QueryType, type: :grapghl do
       result = run_graphql_field('Query.filterUser', nil)
 
       expect(result).to match_array(users)
+    end
+  end
+
+  describe '#search_users' do
+    it 'returns users matching the given name' do
+      matching_user = create(:user, first_name: 'Bruce')
+      other_user = create(:user, first_name: 'Alfred')
+
+      result = run_graphql_field('Query.searchUsers', nil, arguments: { name: 'Bruce' })
+
+      expect(result).to contain_exactly(matching_user)
+      expect(result).not_to include(other_user)
+    end
+
+    it 'returns an empty list when no users match the given name' do
+      create(:user, first_name: 'Bruce')
+
+      result = run_graphql_field('Query.searchUsers', nil, arguments: { name: 'Nonexistent' })
+
+      expect(result).to be_empty
+    end
+
+    it 'fails with a GraphQL error when the required name argument is omitted' do
+      result = RorWithGraphqlSchema.execute('{ searchUsers { id } }')
+
+      expect(result['errors']).to be_present
+      expect(result['errors'].first['message']).to include("missing required arguments: name")
     end
   end
 end

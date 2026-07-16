@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GraphqlController, type: :controller do
+RSpec.describe GraphqlController, type: :controller, skip_es_callbacks: true do
   let(:user) { create :user, first_name: 'Bruce', last_name: 'Wayne' }
   let(:query) {
     <<~GQL

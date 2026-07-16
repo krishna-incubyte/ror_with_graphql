@@ -13,6 +13,8 @@ module Types
 
     field :filter_user, resolver: Resolvers::FilterUsers
 
+    field :search_users, resolver: Resolvers::SearchUsers
+
     field :aggregations, resolver: Resolvers::AggregateUsers
 
     field :test_field, String, null: false,
