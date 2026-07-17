@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Mutations::UpdateUser, type: :graphql do
+RSpec.describe Mutations::UpdateUser, type: :graphql, skip_es_callbacks: true do
   let(:query_ctx) { GraphQL::Query.new(RorWithGraphqlSchema, "{ __typename }").context }
   let(:mutation) { described_class.new(object: nil, context: query_ctx, field: nil) }
 

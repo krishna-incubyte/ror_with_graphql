@@ -28,7 +28,7 @@ SimpleCov.start
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
+Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
 
 # Ensures that the test database schema matches the current schema file.
 # If there are pending migrations it will invoke `db:test:prepare` to
@@ -82,6 +82,7 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
   c.allow_http_connections_when_no_cassette = false
+  c.ignore_hosts 'elasticsearch', 'localhost'
   c.default_cassette_options = {
     match_requests_on: [:uri, :body, :method]
   }

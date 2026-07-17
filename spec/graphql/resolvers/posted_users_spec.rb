@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Resolvers::PostedUsers, type: :graphql do
+RSpec.describe Resolvers::PostedUsers, type: :graphql, skip_es_callbacks: true do
   let(:query_ctx) { GraphQL::Query.new(RorWithGraphqlSchema, "{ __typename }").context }
   let(:resolver) { described_class.new(object: nil, context: query_ctx, field: nil) }
 
