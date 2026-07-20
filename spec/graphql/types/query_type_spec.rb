@@ -27,14 +27,6 @@ RSpec.describe Types::QueryType, type: :grapghl do
     end
   end
 
-  describe '#test_field', skip_es_callbacks: true do
-    it 'returns the static greeting' do
-      result = run_graphql_field('Query.testField', nil)
-
-      expect(result).to eq('Hello World!')
-    end
-  end
-
   describe '#users_with_posts', skip_es_callbacks: true do
     it 'returns only users who have posts' do
       user_with_post = create(:user, :with_post)

@@ -17,19 +17,12 @@ module Types
 
     field :aggregations, resolver: Resolvers::AggregateUsers
 
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-
     def user(id:)
       User.find_by(id: id)
     end
 
     def all_users
       User.includes(:posts).all
-    end
-
-    def test_field
-      "Hello World!"
     end
   end
 end
